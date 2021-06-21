@@ -1,0 +1,11 @@
+# Example Caddyfile.
+{
+	admin off
+}
+
+http://127.0.0.1:29475
+
+root * /home/diamond/Pictures/
+file_server {
+	browse ./browsetmpl.html
+}
