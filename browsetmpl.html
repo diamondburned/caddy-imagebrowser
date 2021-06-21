@@ -423,7 +423,7 @@ footer {
 				{{      if eq $fileType "image" }}
 				<img loading="lazy" src="{{ html .URL }}" />
 				{{ else if eq $fileType "video" }}
-				<video preload="none" src="{{ html .URL }}" muted />
+				<video preload="metadata" src="{{ html .URL }}" muted />
 				{{ else if eq $fileType "file" }}
 				{{ template "file" "48px" }}
 				{{ else if eq $fileType "file" }}
@@ -471,7 +471,7 @@ footer {
 			</a>
 			<main class="content">
 				<img loading="lazy" />
-				<video preload="none" controls />
+				<video preload="metadata" controls />
 			</main>
 			<a role="button" class="control"onclick="return imageViewer.next(this)">
 				{{ template "right-arrow" "" }}
@@ -590,6 +590,7 @@ class ImageViewer {
 	}
 	render() {
 		if (!this.current) return
+		this.clear()
 
 		switch (this.current.classList[1]) {
 		case "file-image":
