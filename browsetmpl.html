@@ -423,7 +423,7 @@ footer {
 				{{      if eq $fileType "image" }}
 				<img loading="lazy" src="{{ html .URL }}" />
 				{{ else if eq $fileType "video" }}
-				<video preload="metadata" src="{{ html .URL }}" muted />
+				<video preload="metadata" src="{{ html .URL }}" muted></video>
 				{{ else if eq $fileType "file" }}
 				{{ template "file" "48px" }}
 				{{ else if eq $fileType "file" }}
@@ -490,6 +490,10 @@ function filter() {
 	const q = filterEl.value.trim().toLowerCase()
 
 	gridEl.childNodes.forEach(el => {
+		if (!el.style || !el.querySelector) {
+			return
+		}
+
 		if (!q) {
 			el.style.display = ''
 			return
